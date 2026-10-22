@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#142b35">
+<title>English Progress Academy</title>
+<style>
+:root {
+  --ink:#18313a;
+  --green:#246747;
+  --paper:#f5f7f4;
+  --line:#dce4df;
+  --muted:#65756e;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+  line-height:1.55;
+}
+header {
+  background:#142b35;
+  color:white;
+  padding:20px 16px;
+}
+.wrap { max-width:760px; margin:auto; }
+.brand { font-size:22px; font-weight:700; }
+.tagline { color:#c8ddd3; font-size:13px; }
+main { padding:18px 14px 40px; }
+.panel {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:17px;
+  margin-bottom:15px;
+}
+h1 { font-size:25px; margin:5px 0 8px; }
+h2 { font-size:19px; margin:0 0 10px; }
+p { margin:7px 0 12px; }
+.small { color:var(--muted); font-size:13px; }
+label { display:block; font-weight:600; margin:12px 0 5px; }
+select,button {
+  font:inherit;
+  border-radius:10px;
+  padding:11px 12px;
+}
+select {
+  width:100%;
+  background:white;
+  border:1px solid #cbd7d0;
+  color:var(--ink);
+}
+button {
+  cursor:pointer;
+  border:0;
+  background:var(--green);
+  color:white;
+  font-weight:600;
+}
+button:focus,select:focus {
+  outline:3px solid #b4d7c0;
+  outline-offset:2px;
+}
+button.secondary {
+  background:white;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+.levels {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+}
+.level {
+  text-align:left;
+  min-height:86px;
+  background:#edf3ee;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+.level.active {
+  background:#dcefe1;
+  border:2px solid var(--green);
+}
+.level strong,.level span { display:block; }
+.level span { font-size:12px; font-weight:400; margin-top:4px; }
+.example {
+  padding:17px 12px;
+  background:#edf4ef;
+  border-radius:12px;
+  text-align:center;
+  font-size:24px;
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
+.pattern {
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:7px;
+}
+.steps { display:flex; flex-wrap:wrap; gap:7px; margin:12px 0; }
+.word {
+  background:#e0efe3;
+  color:#174a30;
+  border:1px solid #bdd9c5;
+  padding:9px 12px;
+}
+.word.used { opacity:.4; }
+.choices { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.feedback {
+  border-radius:10px;
+  background:#edf4ef;
+  padding:12px;
+  margin-top:12px;
+}
+.hidden { display:none; }
+.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.actions button { flex:1; }
+.progress {
+  background:#e4eae5;
+  height:8px;
+  border-radius:8px;
+  overflow:hidden;
+}
+.progress div {
+  height:100%;
+  background:#31845a;
+  width:0;
+}
+footer { text-align:center; padding:15px; color:var(--muted); font-size:12px; }
+@media(min-width:560px) {
+  main { padding-top:25px; }
+  .levels { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">English Progress Academy</div>
+    <div class="tagline">Your structured path to better English</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel">
+    <h1>Learn English step by step</h1>
+    <p>Understand the pattern. Build the sentence. Practise until you can use it yourself.</p>
+    <label for="language">Explanation language</label>
+    <select id="language">
+      <option value="en">English (initial prototype)</option>
+      <option value="bn">Bengali (translation content to be added)</option>
+      <option value="ar">Arabic (translation content to be added)</option>
+      <option value="es">Spanish (translation content to be added)</option>
+    </select>
+    <p class="small" id="languageNote">English explanations are currently available in this prototype.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Your course</h2>
+    <div class="levels" id="levels"></div>
+  </section>
+
+  <section class="panel">
+    <p class="small" id="lessonLabel">BEGINNER · LESSON 1</p>
+    <h2 id="lessonTitle">Build your first sentence</h2>
+    <p id="lessonIntro">A sentence uses words in a meaningful order.</p>
+
+    <div class="example" id="example">I am a student.</div>
+    <div class="pattern" id="pattern">Subject + verb + complement</div>
+
+    <div class="actions">
+      <button id="speak" type="button">🔊 Hear sentence</button>
+      <button id="explain" class="secondary" type="button">Hear explanation</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Build the sentence</h2>
+    <p>Tap the words in the correct order to make: <strong id="target">I am a teacher.</strong></p>
+    <div class="example" id="answerArea" style="font-size:20px">Your sentence appears here</div>
+    <div class="choices" id="choices"></div>
+    <div class="actions">
+      <button class="secondary" id="reset" type="button">Reset</button>
+      <button id="check" type="button">Check answer</button>
+    </div>
+    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Your progress</h2>
+    <div class="progress"><div id="bar"></div></div>
+    <p id="progressText" class="small">0 correct attempts</p>
+    <p class="small">This prototype saves progress on this device only. Sign-in and cloud synchronisation will be added later.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Full course membership</h2>
+    <p>Unlock the complete curriculum, lessons, practice activities, tests and progress tracking.</p>
+    <p class="small">Membership and payments are not active yet. No payment will be taken by this prototype.</p>
+  </section>
+</main>
+
+<footer>English Progress Academy · Learning prototype</footer>
+
+<script>
+const courses = [
+  {name:"Beginner",level:"A1",desc:"Words and basic sentence patterns"},
+  {name:"Elementary",level:"A2",desc:"Everyday English and grammar"},
+  {name:"Pre-intermediate",level:"A2–B1",desc:"Longer sentences and connected ideas"},
+  {name:"Intermediate",level:"B1–B2",desc:"Independent communication"},
+  {name:"Advanced",level:"B2–C1+",desc:"Precise, natural English"}
+];
+
+const patterns = [
+  {
+    title:"Build your first sentence",
+    intro:"A sentence uses words in a meaningful order.",
+    example:"I am a student.",
+    pattern:"Subject + verb + complement",
+    target:"I am a teacher.",
+    words:["teacher","am","a","I"],
+    answer:["I","am","a","teacher"],
+    explanation:"The subject comes first. Then use am. Put a before the singular noun teacher."
+  },
+  {
+    title:"Use he and she",
+    intro:"He and she use is in this sentence pattern.",
+    example:"She is a teacher.",
+    pattern:"He / She + is + noun",
+    target:"He is a teacher.",
+    words:["is","teacher","He","a"],
+    answer:["He","is","a","teacher"],
+    explanation:"Use is after he or she in this pattern."
+  },
+  {
+    title:"Talk about actions",
+    intro:"The simple present can describe habits and regular activities.",
+    example:"Robin goes to school.",
+    pattern:"Subject + verb + place",
+    target:"Robin goes to school.",
+    words:["school","Robin","goes","to"],
+    answer:["Robin","goes","to","school"],
+    explanation:"Use goes with Robin in this simple-present example. The usual word order is subject, verb, then place."
+  }
+];
+
+let selectedLevel = 0;
+let lessonIndex = 0;
+let chosen = [];
+let correctAttempts = Number(localStorage.getItem("epa_demo_correct") || 0);
+let activeWords = [];
+
+const $ = id => document.getElementById(id);
+
+function renderLevels() {
+  $("levels").innerHTML = "";
+  courses.forEach((course,index) => {
+    const button = document.createElement("button");
+    button.className = "level" + (selectedLevel === index ? " active" : "");
+    button.innerHTML = "<strong>" + course.name + "</strong><span>" +
+      course.level + " · " + course.desc + "</span>";
+    button.type = "button";
+    button.onclick = () => {
+      selectedLevel = index;
+      renderLevels();
+      if(index === 0) {
+        lessonIndex = 0;
+        renderLesson();
+      } else {
+        $("lessonLabel").textContent = course.name.toUpperCase();
+        $("lessonTitle").textContent = course.name + " course";
+        $("lessonIntro").textContent = course.desc +
+          ". The complete lessons for this level will be added during curriculum development.";
+        $("example").textContent = "Course content coming next";
+        $("pattern").textContent = course.level;
+        $("target").textContent = "Begin with the Beginner course";
+        $("choices").innerHTML = "";
+        $("answerArea").textContent = "Select Beginner to try the sample lesson.";
+        $("feedback").classList.add("hidden");
+      }
+    };
+    $("levels").appendChild(button);
+  });
+}
+
+function renderLesson() {
+  const item = patterns[lessonIndex];
+  $("lessonLabel").textContent = "BEGINNER · SAMPLE LESSON " + (lessonIndex+1);
+  $("lessonTitle").textContent = item.title;
+  $("lessonIntro").textContent = item.intro;
+  $("example").textContent = item.example;
+  $("pattern").textContent = item.pattern;
+  $("target").textContent = item.target;
+  activeWords = item.words.map((word,index) => ({word,index,used:false}));
+  chosen = [];
+  $("feedback").classList.add("hidden");
+  drawWords();
+  drawAnswer();
+}
+
+function drawWords() {
+  $("choices").innerHTML = "";
+  activeWords.forEach((item,index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "word" + (item.used ? " used" : "");
+    button.textContent = item.word;
+    button.disabled = item.used;
+    button.onclick = () => {
+      item.used = true;
+      chosen.push(index);
+      drawWords();
+      drawAnswer();
+      $("feedback").classList.add("hidden");
+    };
+    $("choices").appendChild(button);
+  });
+}
+
+function drawAnswer() {
+  $("answerArea").textContent = chosen.length
+    ? chosen.map(index => activeWords[index].word).join(" ")
+    : "Your sentence appears here";
+}
+
+$("reset").onclick = () => renderLesson();
+
+$("check").onclick = () => {
+  const item = patterns[lessonIndex];
+  const result = chosen.map(index => activeWords[index].word);
+  const good = result.join(" ") === item.answer.join(" ");
+  $("feedback").classList.remove("hidden");
+  if(good) {
+    correctAttempts++;
+    localStorage.setItem("epa_demo_correct",String(correctAttempts));
+    $("feedback").textContent = "Correct! " + item.explanation;
+  } else {
+    $("feedback").textContent = "Not quite. Try again. " + item.explanation;
+  }
+  $("progressText").textContent = correctAttempts + " correct attempts recorded on this device.";
+  $("bar").style.width = Math.min(100,correctAttempts*10) + "%";
+};
+
+function speak(text,language) {
+  if(!("speechSynthesis" in window)) {
+    alert("Speech playback is not supported in this browser.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = language || "en-US";
+  utterance.rate = 0.85;
+  window.speechSynthesis.speak(utterance);
+}
+
+$("speak").onclick = () => speak(patterns[lessonIndex].example,"en-US");
+$("explain").onclick = () => speak(patterns[lessonIndex].explanation,"en-US");
+
+$("language").onchange = () => {
+  const language = $("language").value;
+  const messages = {
+    en:"English explanations are currently available in this prototype.",
+    bn:"Bengali subtitles and narration need to be added and reviewed.",
+    ar:"Arabic subtitles and narration need to be added and reviewed.",
+    es:"Spanish subtitles and narration need to be added and reviewed."
+  };
+  $("languageNote").textContent = messages[language];
+};
+
+$("progressText").textContent = correctAttempts +
+  " correct attempts recorded on this device.";
+$("bar").style.width = Math.min(100,correctAttempts*10) + "%";
+
+renderLevels();
+renderLesson();
+</script>
+</body>
+</html>

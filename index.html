@@ -3,9 +3,43 @@
 <style>
 :root{--bg:#101827;--panel:#1b2638;--text:#f1f5f9;--muted:#b7c4d8;--accent:#67e8c0;--line:#344258}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Bengali",sans-serif;line-height:1.6}header{padding:20px 16px;background:#0b1220;border-bottom:1px solid var(--line)}header h1{font-size:23px;margin:0;color:var(--accent)}header p{margin:5px 0 0;color:var(--muted)}main{max-width:920px;margin:auto;padding:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px;margin:18px 0 8px;color:var(--accent)}p{margin:8px 0}.small{font-size:13px;color:var(--muted)}label{display:block;margin:10px 0 5px}select,input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:9px;background:#0d1625;color:var(--text);font:inherit}button{border:0;border-radius:9px;padding:11px 14px;background:var(--accent);color:#102033;font-weight:bold;font-size:14px;margin:5px 5px 5px 0;cursor:pointer}button.secondary{background:#344258;color:white}button:disabled{opacity:.5}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}.lessonlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}.navbutton{text-align:left;width:100%;background:#243248;color:white;border:1px solid var(--line);margin:4px 0}.navbutton.active{border-color:var(--accent);color:var(--accent)}.example{background:#111d2e;border-left:3px solid var(--accent);padding:10px 12px;margin:8px 0;border-radius:5px}.question{padding:12px 0;border-bottom:1px solid var(--line)}.option{display:block;background:#26354a;color:white;text-align:left;width:100%;margin:6px 0;font-weight:normal}.option.correct{background:#17664d}.option.wrong{background:#783e4a}.hidden{display:none}.progressbar{height:8px;background:#334155;border-radius:9px;overflow:hidden}.progressbar div{height:100%;background:var(--accent);width:0}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:10px;min-width:390px}th,td{border:1px solid var(--line);padding:8px;text-align:left}th{background:#26354a;color:var(--accent)}.status{white-space:pre-wrap}footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}@media(max-width:520px){main{padding:9px}.panel{padding:12px}}
 </style></head><body><header><h1>English Progress Academy</h1><p>Your structured path to better English</p></header><main>
-<section class="panel"><h2>Your learning dashboard</h2><p>ধাপে ধাপে ইংরেজি শিখুন। প্রতিটি পাঠ বুঝুন, উদাহরণ শুনুন, বাক্য তৈরি করুন এবং অনুশীলন করুন।</p><label for="language">Teacher answer / voice language</label><select id="language"><option value="bn-BD">বাংলা (Bengali)</option><option value="en-US">English</option><option value="ar-SA">العربية (Arabic)</option><option value="es-ES">Español (Spanish)</option></select><p class="small">Bengali is the first complete explanation language. Other choices affect teacher-answer language and device voice selection; the lessons have not yet been translated into those languages.</p><p id="progressText">Completed lessons: 0 of 13</p><div class="progressbar"><div id="progressBar"></div></div></section>
+<section class="panel"><h2>Your learning dashboard</h2><p>ধাপে ধাপে ইংরেজি শিখুন। প্রতিটি পাঠ বুঝুন, উদাহরণ শুনুন, বাক্য তৈরি করুন এবং অনুশীলন করুন।</p><label for="language">Teacher answer / voice language</label>
+<select id="language">
+  <option value="bn-BD">বাংলা — Bengali</option>
+  <option value="ar-SA">العربية — Arabic</option>
+  <option value="es-419">Español latinoamericano — Latin American Spanish</option>
+  <option value="pt-BR">Português brasileiro — Brazilian Portuguese</option>
+  <option value="hi-IN">हिन्दी — Hindi</option>
+  <option value="id-ID">Bahasa Indonesia — Indonesian</option>
+  <option value="ms-MY">Bahasa Melayu — Malay</option>
+  <option value="zh-CN">简体中文 — Simplified Chinese</option>
+  <option value="zh-TW">繁體中文 — Traditional Chinese</option>
+  <option value="ja-JP">日本語 — Japanese</option>
+  <option value="en-US">English subtitles</option>
+  <option value="fr-FR">Français — French</option>
+  <option value="ur-PK">اردو — Urdu</option>
+  <option value="tr-TR">Türkçe — Turkish</option>
+  <option value="vi">Tiếng Việt — Vietnamese</option>
+  <option value="th">ไทย — Thai</option>
+  <option value="ko-KR">한국어 — Korean</option>
+  <option value="ne">नेपाली — Nepali</option>
+  <option value="sw">Kiswahili — Swahili</option>
+  <option value="ht">Kreyòl ayisyen — Haitian Creole</option>
+  <option value="qu">Quechua</option>
+  <option value="gn">Guarani</option>
+  <option value="la">Latin</option>
+</select>
+<p class="small">The teacher explains in English first. Subtitles appear in your selected language. Translation quality and voice availability vary by language.</p><p id="progressText">Completed lessons: 0 of 13</p><div class="progressbar"><div id="progressBar"></div></div></section>
 <section class="panel"><h2>Choose a lesson</h2><div id="lessonList" class="lessonlist"></div></section>
-<section id="lessonArea" class="panel"><h2 id="lessonTitle"></h2><div id="lessonContent"></div><div class="row"><button id="hearLesson">🔊 Hear English</button><button class="secondary" id="hearExplanation">🔊 Hear explanation</button></div><p id="voiceStatus" class="small status" aria-live="polite">Tap a listening button to hear the lesson.</p><div class="row"><button class="secondary" id="markComplete">Mark lesson complete</button><button id="nextLesson">Next lesson →</button></div></section>
+<section id="lessonArea" class="panel"><h2 id="lessonTitle"></h2><div id="lessonContent"></div>
+<div class="example">
+  <h3>English lesson with native-language subtitles</h3>
+  <p class="small">Generate a detailed explanation of the current lesson in English, followed by subtitles in your selected language.</p>
+  <button id="generateBilingualLesson" type="button">Generate bilingual lesson</button>
+  <button id="hearBilingualEnglish" class="secondary" type="button" disabled>🔊 Hear English explanation</button>
+  <div id="bilingualLesson" class="status" style="white-space:pre-wrap;margin-top:12px" aria-live="polite"></div>
+</div>
+<div class="row"><button id="hearLesson">🔊 Hear English</button><button class="secondary" id="hearExplanation">🔊 Hear explanation</button></div><p id="voiceStatus" class="small status" aria-live="polite">Tap a listening button to hear the lesson.</p><div class="row"><button class="secondary" id="markComplete">Mark lesson complete</button><button id="nextLesson">Next lesson →</button></div></section>
 <section class="panel"><h2>Verb dictionary</h2><p>যেকোনো সময় একটি verb খুঁজতে নিচের বোতাম চাপুন। তারপর V1, V2 ও V3 দেখতে verb লিখুন।</p><button id="toggleVerbChart" type="button">📘 Open verb dictionary</button><p id="verbToggleStatus" class="small" aria-live="polite">The verb list is hidden until you open it.</p></section><section id="verbSection" class="panel hidden"><h2>Common English Verbs — V1, V2, V3</h2><p>Present Simple পাঠের পর এই চার্টটি মুখস্থ করুন। Tense অনুযায়ী বাক্য তৈরি করতে V1, V2 ও V3 জানা গুরুত্বপূর্ণ। প্রতিদিন অল্প অল্প করে শিখুন।</p><p><b>V1:</b> Base form · <b>V2:</b> Past form · <b>V3:</b> Past participle</p><label for="verbSearch">Find a verb</label><input id="verbSearch" placeholder="Search: go, write, play..."><h3>Regular verbs (<span id="regularCount"></span>)</h3><div class="tablewrap"><table><thead><tr><th>Base form (V1)</th><th>Past form (V2)</th><th>Past participle (V3)</th></tr></thead><tbody id="regularTable"></tbody></table></div><h3>Irregular verbs (<span id="irregularCount"></span>)</h3><div class="tablewrap"><table><thead><tr><th>Base form (V1)</th><th>Past form (V2)</th><th>Past participle (V3)</th></tr></thead><tbody id="irregularTable"></tbody></table></div><p id="verbCountNote" class="small"></p></section>
 <section class="panel"><h2>Translate Bengali into English</h2><p>প্রতিটি পাঠের ১০টি বাংলা বাক্য ইংরেজিতে অনুবাদ করুন। আগে নিজে চেষ্টা করুন, তারপর suggested answers দেখুন।</p><div id="translationQuestions"></div><button id="showTranslations">Show suggested answers</button><div id="translationAnswers" class="hidden"></div></section>
 <section class="panel"><h2>Practice exercises</h2><p>Each lesson contains 10 multiple-choice questions. Choose an answer, then check your score.</p><div id="exerciseQuestions"></div><button id="checkExercises">Check my answers</button><p id="exerciseResult" aria-live="polite"></p></section>
@@ -48,6 +82,101 @@
 <section class="panel"><h2>Before launching a paid app</h2><p>This is a working learning prototype, not yet a paid subscription service. Secure accounts, cloud-synced progress, payments, and professional curriculum review still need to be added and tested. Do not charge learners until those systems are ready.</p></section></main><footer>English Progress Academy · Learn one pattern at a time</footer>
 <script>
 const WORKER_URL="https://english-progress-academy-app.maczone61.workers.dev/";
+let latestBilingualLesson = "";
+
+async function generateBilingualLesson() {
+  const button = document.getElementById("generateBilingualLesson");
+  const output = document.getElementById("bilingualLesson");
+  const hearButton = document.getElementById("hearBilingualEnglish");
+
+  button.disabled = true;
+  hearButton.disabled = true;
+  output.textContent = "Preparing your English lesson and subtitles...";
+  latestBilingualLesson = "";
+
+  const lesson = lessons[current];
+  const language = document.getElementById("language").value;
+
+  const question =
+    "Teach the grammar topic: " + lesson.title + ".\n\n" +
+    "Existing lesson notes:\n" + lesson.bn + "\n\n" +
+    "Grammar pattern: " + lesson.pattern + "\n\n" +
+    "Examples:\n" +
+    lesson.examples.map(e => e[0] + " — " + e[1]).join("\n") +
+    "\n\nCreate a complete, accurate teaching explanation. " +
+    "Explain in English first, then provide subtitles in the selected language. " +
+    "Use clear headings and this format for each important point:\n" +
+    "ENGLISH: explanation in English\n" +
+    "SUBTITLE: accurate translation into the selected language\n" +
+    "EXAMPLE: correct English example\n" +
+    "SUBTITLE: translation of the example's meaning\n" +
+    "Include the rule, sentence structure, positive and negative forms, " +
+    "questions where relevant, common mistakes, and three short practice questions. " +
+    "Keep English examples in English. The subtitle language code is " +
+    language + ". Do not replace the English explanation with a translation.";
+
+  try {
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "lesson",
+        question,
+        lesson: lesson.title,
+        lessonExplanation: lesson.bn,
+        explanationLanguage: language
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "The lesson service returned an error.");
+    }
+
+    latestBilingualLesson = data.answer || "";
+
+    if (!latestBilingualLesson.trim()) {
+      throw new Error("The teacher returned an empty lesson.");
+    }
+
+    output.textContent = latestBilingualLesson;
+    hearButton.disabled = false;
+  } catch (error) {
+    output.textContent =
+      "Could not generate the bilingual lesson: " + error.message +
+      "\nPlease check your internet connection and try again.";
+  } finally {
+    button.disabled = false;
+  }
+}
+
+document.getElementById("generateBilingualLesson").onclick =
+  generateBilingualLesson;
+
+document.getElementById("hearBilingualEnglish").onclick = () => {
+  if (!latestBilingualLesson) return;
+
+  // Read only lines marked ENGLISH or EXAMPLE, not subtitle translations.
+  const englishParts = latestBilingualLesson
+    .split("\n")
+    .filter(line =>
+      /^\s*(ENGLISH|EXAMPLE)\s*:/i.test(line)
+    )
+    .map(line => line.replace(/^\s*(ENGLISH|EXAMPLE)\s*:\s*/i, ""))
+    .join(". ");
+
+  if (englishParts.trim()) {
+    speak(englishParts, "en-US");
+  } else {
+    speak(
+      "The English explanation is ready on the screen. " +
+      "Please read the lesson while we improve the speech formatting.",
+      "en-US"
+    );
+  }
+};
+
 const lessons=[
 {title:"1. Present Simple — S + V",bn:"Present Simple দিয়ে অভ্যাস, সাধারণ সত্য এবং নিয়মিত কাজ বোঝানো হয়। Subject-এর পরে verb বসে। He, she, it অথবা singular third-person subject হলে affirmative sentence-এ সাধারণত verb-এর সঙ্গে s/es যোগ হয়। I, you, we, they-এর সঙ্গে base form ব্যবহার হয়।",pattern:"Subject + base verb (he/she/it: verb-s/es)",examples:[["I read.","আমি পড়ি।"],["He reads.","সে পড়ে।"],["You go.","তুমি যাও।"],["She goes.","সে যায়।"],["They play.","তারা খেলে।"],["Karim goes.","করিম যায়।"],["Birds fly in the sky.","পাখিরা আকাশে ওড়ে।"]],tr:[ ["আমি প্রতিদিন ইংরেজি পড়ি।","I study English every day."],["সে স্কুলে যায়।","He goes to school."],["তারা ফুটবল খেলে।","They play football."],["রহিম বই পড়ে।","Rahim reads books."],["আমরা সকালে উঠি।","We get up in the morning."],["আমার মা রান্না করেন।","My mother cooks."],["তুমি ভালো ইংরেজি বলো।","You speak English well."],["পাখিরা আকাশে ওড়ে।","Birds fly in the sky."],["সে প্রতিদিন পানি পান করে।","She drinks water every day."],["শিক্ষক ইংরেজি শেখান।","The teacher teaches English."]],q:[["He ___ to school every day.","go","goes","going",1],["They ___ English.","study","studies","studying",0],["She ___ books.","read","reads","reading",1],["I ___ football.","play","plays","playing",0],["Birds ___ in the sky.","flies","fly","flying",1],["Karim ___ tea.","drink","drinks","drinking",1],["We ___ in Bangladesh.","lives","live","living",1],["My brother ___ TV.","watch","watches","watching",1],["You ___ very fast.","runs","run","running",1],["The sun ___ in the east.","rise","rises","rising",1]]},
 {title:"2. Present Simple — S + V + Extension",bn:"Extension হলো বাক্যে যোগ হওয়া অতিরিক্ত তথ্য—যেমন object, place, time বা manner।",pattern:"Subject + Verb + Object / Place / Time",examples:[["I read a book.","আমি একটি বই পড়ি।"],["He goes to school.","সে স্কুলে যায়।"],["They play in the field.","তারা মাঠে খেলে।"]],tr:[["আমি একটি চিঠি লিখি।","I write a letter."],["সে বাজারে যায়।","He goes to the market."],["আমরা সকালে ইংরেজি শিখি।","We learn English in the morning."],["তারা মাঠে ক্রিকেট খেলে।","They play cricket in the field."],["রহিম প্রতিদিন বাসে যায়।","Rahim goes by bus every day."],["সে একটি গান গায়।","She sings a song."],["আমার বাবা সংবাদপত্র পড়েন।","My father reads the newspaper."],["তুমি রাতে বই পড়ো।","You read books at night."],["শিশুরা পার্কে খেলে।","The children play in the park."],["আমি প্রতিদিন স্কুলে যাই।","I go to school every day."]],q:[["He ___ a book.","read","reads","reading",1],["I go ___ school.","at","to","on",1],["They ___ cricket.","plays","play","playing",1],["She ___ a song.","sing","sings","singing",1],["We ___ English every day.","learn","learns","learning",0],["My father ___ the newspaper.","read","reads","reading",1],["Birds fly ___ the sky.","in","at","to",0],["Karim ___ tea in the morning.","drink","drinks","drinking",1],["You ___ books at night.","reads","read","reading",1],["The children ___ in the park.","plays","play","playing",1]]},

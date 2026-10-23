@@ -1,1 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>English Progress Academy</title>
+<style>
+:root{--bg:#101827;--panel:#1b2638;--panel2:#223149;--text:#f3f6fb;--muted:#b7c4d8;--accent:#76e0bd;--line:#35445b;--danger:#ffb4a8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 15px;background:var(--accent);color:#10251f;font-weight:750}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.55;cursor:wait}.wrap{max-width:900px;margin:auto;padding:16px}.hero{padding:20px 0 14px}.eyebrow{color:var(--accent);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.hero h1{font-size:clamp(1.8rem,7vw,2.7rem);line-height:1.1;margin:7px 0}.hero p,.muted{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.86rem;color:var(--muted);font-weight:650}select,input,textarea{width:100%;min-width:0;background:#111c2c;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:11px}h2{font-size:1.25rem;margin:0 0 8px}h3{font-size:1.05rem;margin:18px 0 6px}.pillrow{display:flex;flex-wrap:wrap;gap:8px}.pill{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:8px 11px;color:var(--text);font-size:.9rem}.pill.active{background:var(--accent);color:#10251f;border-color:var(--accent);font-weight:800}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.status{color:var(--accent);font-size:.92rem;min-height:1.4em}.lesson{white-space:pre-wrap;overflow-wrap:anywhere}.block{background:#111c2c;border:1px solid var(--line);border-radius:13px;padding:13px;margin:10px 0}.small{font-size:.88rem}.choice{display:flex;gap:9px;align-items:flex-start;background:#111c2c;border:1px solid var(--line);padding:10px;border-radius:11px;margin:8px 0}.choice input{width:auto;margin-top:5px}.good{color:#8ff0c8}.bad{color:var(--danger)}.progress{height:8px;background:#0c1420;border-radius:10px;overflow:hidden}.progress div{height:100%;width:0;background:var(--accent)}.hidden{display:none!important}.footer{color:var(--muted);font-size:.82rem;text-align:center;padding:20px 4px}.badge{display:inline-block;background:#26384c;color:var(--accent);border-radius:7px;padding:3px 7px;font-size:.76rem;font-weight:800}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.twoBtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding:12px}.panel{padding:13px}.twoBtns{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">Learn English step by step</div>
+<h1>English Progress Academy</h1>
+<p>Build real-world English through speaking, listening, vocabulary, reading, writing and grammar in context.</p>
+<div class="pillrow"><span class="badge">Beginner to Advanced</span><span class="badge">Multilingual support</span><span class="badge">Self-paced</span></div>
+</header>
 
+<section class="panel">
+<h2>1. Choose your learning path</h2>
+<div class="grid">
+<div class="field"><label for="level">English level</label><select id="level"><option>A1 — Beginner</option><option>A2 — Elementary</option><option>B1 — Intermediate</option><option>B2 — Upper-intermediate</option><option>C1 — Advanced</option><option>C2 — Proficient</option></select></div>
+<div class="field"><label for="language">Explanation / subtitle language</label><select id="language">
+<option value="Arabic">Arabic</option><option value="Bengali">Bengali</option><option value="Spanish">Spanish</option><option value="Portuguese (Brazil)">Portuguese (Brazil)</option><option value="Hindi">Hindi</option><option value="Urdu">Urdu</option><option value="French">French</option><option value="Indonesian">Indonesian</option><option value="Chinese (Simplified)">Chinese (Simplified)</option><option value="Japanese">Japanese</option><option value="Vietnamese">Vietnamese</option><option value="Thai">Thai</option><option value="Korean">Korean</option><option value="Swahili">Swahili</option><option value="English">English only</option></select></div>
+</div>
+<h3>Choose a skill</h3>
+<div class="pillrow" id="skills"></div>
+<h3>Choose a topic</h3>
+<div class="field"><select id="topic"></select></div>
+<div class="actions"><button id="start">Create my lesson</button><button class="secondary" id="resume">Resume last lesson</button></div>
+<div class="status" id="status" role="status"></div>
+</section>
+
+<section class="panel">
+<div class="toprow"><h2>2. Your lesson</h2><span class="badge" id="lessonBadge">Not started</span></div>
+<div class="progress"><div id="progressBar"></div></div>
+<div id="lesson" class="lesson muted">Choose a skill and topic, then tap “Create my lesson”. Your lesson will include practical English, explanation in your selected language, examples and practice activities.</div>
+<div class="actions"><button class="secondary" id="speakEnglish">🔊 Read English</button><button class="secondary" id="speakSubtitle">🔊 Read explanation</button><button class="secondary" id="stopSpeech">Stop voice</button></div>
+<div class="actions"><button id="markDone">Mark lesson complete</button></div>
+</section>
+
+<section class="panel">
+<h2>3. Practise what you learned</h2>
+<p class="muted small">Create a short practice set for the selected lesson. Questions should match the chosen skill and topic, not just grammar gap-fills.</p>
+<div class="grid">
+<div class="field"><label for="questionCount">Number of questions</label><select id="questionCount"><option>5</option><option selected>10</option><option>20</option></select></div>
+<div class="field"><label for="practiceType">Practice format</label><select id="practiceType"><option>Mixed practice</option><option>Multiple choice</option><option>Short answers</option><option>Speaking prompts</option><option>Reading comprehension</option><option>Writing task</option></select></div>
+</div>
+<div class="actions"><button id="makePractice">Create practice</button><button class="secondary" id="checkPractice">Check my answers</button></div>
+<div id="practice" class="lesson muted">Your practice questions will appear here.</div>
+<div id="score" class="status"></div>
+</section>
+
+<section class="panel">
+<h2>4. Ask your English teacher</h2>
+<p class="muted small">Ask about a word, sentence, speaking situation, reading passage or grammar rule. The answer should use English with support in your selected language.</p>
+<textarea id="question" rows="3" placeholder="Example: How can I politely ask someone to repeat what they said?"></textarea>
+<div class="actions"><button id="ask">Ask teacher</button><button class="secondary" id="speakAnswer">🔊 Read answer</button></div>
+<div id="answer" class="lesson block muted">Your teacher's answer will appear here.</div>
+</section>
+
+<section class="panel">
+<h2>Your progress</h2>
+<div class="toprow"><span>Completed lessons</span><strong id="completed">0</strong></div>
+<div class="toprow"><span>Current learning path</span><strong id="pathName">Speaking & conversation</strong></div>
+<p class="muted small">Progress is saved on this device.</p>
+<button class="secondary" id="reset">Reset local progress</button>
+</section>
+<div class="footer">English Progress Academy · Practical English for real life</div>
+</div>
+<script>
+const WORKER_URL="https://english-progress-academy-app.maczone61.workers.dev/";
+const $=id=>document.getElementById(id);
+const curricula={
+"Speaking & conversation":[
+"Introducing yourself and meeting people","Everyday questions and answers","Talking about family and friends","Describing your daily routine","Making requests politely","Agreeing and disagreeing","Giving opinions and reasons","Making plans and invitations","Solving everyday misunderstandings","Job interview conversation"],
+"Vocabulary & expressions":[
+"Essential everyday words","Describing people and personality","Food, shopping and prices","Travel and directions","Feelings and opinions","Common collocations","Phrasal verbs in context","Word families and prefixes","Idioms used in daily life","Formal and informal expressions"],
+"Listening & pronunciation":[
+"Understand a short everyday dialogue","Listen for key information","Numbers, dates and times","Word stress","Sentence stress and rhythm","Linking words in natural speech","Understand different speaking speeds","Follow spoken instructions","Identify attitude and emotion","Listen and summarise"],
+"Reading comprehension":[
+"Read a short everyday message","Find the main idea","Find specific details","Understand words from context","Read a short story","Understand notices and signs","Read an email","Recognise opinions and facts","Infer meaning and intention","Summarise a short text"],
+"Writing & sentence building":[
+"Build clear English sentences","Write a personal introduction","Write a short paragraph","Describe a person or place","Write a friendly message","Write a polite email","Connect ideas in a paragraph","Write an opinion with reasons","Summarise information","Edit and improve a draft"],
+"Grammar in context":[
+"Present simple in daily routines","Past simple in a story","Future plans and arrangements","Questions in real conversations","Articles and everyday nouns","Pronouns and clear reference","Adjectives and adverbs in descriptions","Prepositions for time and place","Connectors for longer answers","Common sentence errors"],
+"Practical English":[
+"English for shopping","Ask for help and clarification","English for travel","At a doctor or pharmacy","Phone calls and messages","Study and classroom English","Workplace communication","Customer service situations","Prepare for a job interview","Explain a problem and suggest a solution"]
+};
+let activeSkill="Speaking & conversation", currentLesson="", currentEnglish="", currentSubtitle="", currentPractice=[], completed=new Set(JSON.parse(localStorage.getItem("epa_completed_v2")||"[]")), currentKey="";
+const skillList=Object.keys(curricula);
+function renderSkills(){ $("skills").innerHTML=skillList.map(s=>`<button class="pill ${s===activeSkill?'active':''}" data-skill="${s}">${s}</button>`).join("");document.querySelectorAll("[data-skill]").forEach(b=>b.onclick=()=>{activeSkill=b.dataset.skill;renderSkills();renderTopics();$("pathName").textContent=activeSkill;});}
+function renderTopics(){ $("topic").innerHTML=curricula[activeSkill].map(t=>`<option>${t}</option>`).join("");}
+function langName(){return $("language").value}
+function setStatus(s){$("status").textContent=s}
+async function callWorker(payload){const r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||"The lesson service returned an error ("+r.status+").");return data}
+function parseLesson(text){const lines=text.split(/\r?\n/);let en=[],sub=[],section="";for(const line of lines){if(/^\s*(ENGLISH|LESSON|EXPLANATION)\s*:/i.test(line)){section="en";en.push(line.replace(/^\s*(ENGLISH|LESSON|EXPLANATION)\s*:\s*/i,""));}else if(/^\s*(SUBTITLE|TRANSLATION|EXPLANATION IN [^:]+)\s*:/i.test(line)){section="sub";sub.push(line.replace(/^\s*(SUBTITLE|TRANSLATION|EXPLANATION IN [^:]+)\s*:\s*/i,""));}else if(section==="en")en.push(line);else if(section==="sub")sub.push(line);}
+if(!en.length){en=[text];}if(!sub.length)sub=["A separate "+langName()+" explanation was not clearly marked in the response. You can still study the English lesson above."];return {en:en.join("\n").trim(),sub:sub.join("\n").trim()};}
+async function createLesson(){const topic=$("topic").value,level=$("level").value;currentKey=level+"|"+activeSkill+"|"+topic;setStatus("Creating your practical English lesson…");$("start").disabled=true;$("lesson").textContent="Please wait while your lesson is prepared.";try{
+const prompt=`Create a complete, practical English-learning lesson for level ${level}. Skill: ${activeSkill}. Topic: ${topic}. Learner's preferred explanation language: ${langName()}. This is NOT a grammar-only app. Focus on the selected skill and real-life communication. Use clear section labels exactly like this: ENGLISH: (teach in English first, with useful examples and step-by-step guidance); SUBTITLE: (accurate explanation of the preceding section in ${langName()}); ENGLISH: (model dialogue, text, phrases or task appropriate to the skill); SUBTITLE: (translation of the model content into ${langName()}); PRACTICE: (3 short tasks). For speaking/listening, include a natural dialogue and useful phrases. For vocabulary, give words in meaningful context. For reading, provide a short text and comprehension cues. For writing, show a model and structure. For grammar in context, use realistic examples. For practical English, teach a realistic situation. Keep the English as the main learning content. Never use Bengali unless Bengali is selected. Do not just list grammar rules.`;
+const data=await callWorker({action:"answer",question:prompt,language:langName(),context:`Create a practical English lesson, not a grammar-only lesson. Level: ${level}. Skill: ${activeSkill}. Topic: ${topic}. Preferred support language: ${langName()}.`});
+const raw=data.answer||data.lesson||data.text||JSON.stringify(data);const parsed=parseLesson(raw);currentLesson=raw;currentEnglish=parsed.en;currentSubtitle=parsed.sub;
+$("lesson").innerHTML=`<div class="block"><span class="badge">ENGLISH · ${level}</span><h3>Learn in English</h3><div>${escapeHtml(currentEnglish).replace(/\n/g,"<br>")}</div></div><div class="block"><span class="badge">${escapeHtml(langName()).toUpperCase()} SUPPORT</span><h3>Explanation and subtitles</h3><div>${escapeHtml(currentSubtitle).replace(/\n/g,"<br>")}</div></div>`;
+$("lessonBadge").textContent=activeSkill;$("progressBar").style.width="15%";localStorage.setItem("epa_last_v2",JSON.stringify({skill:activeSkill,topic,level,language:langName(),raw}));setStatus("Lesson ready. Study the English first, then use the subtitle support.");
+}catch(e){$("lesson").textContent="Could not create the lesson. Check your internet connection and try again. Details: "+e.message;setStatus("Lesson generation failed.");}finally{$("start").disabled=false;}}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function speak(text,lang){if(!text.trim())return;if(!("speechSynthesis" in window)){setStatus("Voice playback is not supported by this browser.");return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);const map={"Arabic":"ar","Bengali":"bn","Spanish":"es","Portuguese (Brazil)":"pt-BR","Hindi":"hi","Urdu":"ur","French":"fr","Indonesian":"id","Chinese (Simplified)":"zh-CN","Japanese":"ja","Vietnamese":"vi","Thai":"th","Korean":"ko","Swahili":"sw","English":"en"};u.lang=lang==="English"?"en-US":(map[lang]||"en-US");u.rate=.88;const voices=speechSynthesis.getVoices();const prefix=u.lang.toLowerCase().split("-")[0];const v=voices.find(x=>x.lang.toLowerCase()===u.lang.toLowerCase())||voices.find(x=>x.lang.toLowerCase().startsWith(prefix));if(v)u.voice=v;u.onerror=()=>setStatus("Your device may not have a voice installed for "+lang+".");speechSynthesis.speak(u);}
+$("start").onclick=createLesson;
+$("speakEnglish").onclick=()=>speak(currentEnglish,"English");
+$("speakSubtitle").onclick=()=>speak(currentSubtitle,langName());
+$("stopSpeech").onclick=()=>speechSynthesis.cancel();
+$("markDone").onclick=()=>{if(!currentKey){setStatus("Create a lesson first.");return;}completed.add(currentKey);localStorage.setItem("epa_completed_v2",JSON.stringify([...completed]));updateProgress();$("progressBar").style.width="100%";setStatus("Lesson marked complete.");};
+$("resume").onclick=()=>{try{const x=JSON.parse(localStorage.getItem("epa_last_v2")||"null");if(!x){setStatus("No saved lesson yet.");return;}activeSkill=x.skill;$("level").value=x.level;$("language").value=x.language;renderSkills();renderTopics();$("topic").value=x.topic;currentKey=x.level+"|"+x.skill+"|"+x.topic;currentLesson=x.raw;const p=parseLesson(x.raw);currentEnglish=p.en;currentSubtitle=p.sub;$("lesson").innerHTML=`<div class="block"><h3>Learn in English</h3>${escapeHtml(currentEnglish).replace(/\n/g,"<br>")}</div><div class="block"><h3>${escapeHtml(x.language)} support</h3>${escapeHtml(currentSubtitle).replace(/\n/g,"<br>")}</div>`;$("lessonBadge").textContent=x.skill;setStatus("Last lesson restored.");}catch(e){setStatus("Could not restore the saved lesson.");}};
+async function makePractice(){if(!currentKey){setStatus("Create a lesson first.");return;}const count=$("questionCount").value,type=$("practiceType").value;$("makePractice").disabled=true;$("practice").textContent="Creating skill-specific practice…";$("score").textContent="";try{const prompt=`Create ${count} ${type} practice items for an English learner at ${$("level").value}. Skill: ${activeSkill}. Topic: ${$("topic").value}. The lesson content is: ${currentEnglish}. Requirements: items must practise this skill specifically, not generic grammar gap-fill unless the topic is grammar. For multiple choice, give 4 options and mark the answer with "ANSWER:". For short answers, include "MODEL ANSWER:". For speaking prompts, give a prompt and a sample response. For reading comprehension, include a short passage and questions. For writing task, give clear instructions and a simple rubric. Put a numbered line for every question. Include English first and short ${langName()} instructions where helpful.`;
+const d=await callWorker({action:"answer",question:prompt,language:langName(),context:currentEnglish});const raw=d.answer||d.text||JSON.stringify(d);$("practice").innerHTML=escapeHtml(raw).replace(/\n/g,"<br>");currentPractice=[raw];localStorage.setItem("epa_practice_v2",raw);setStatus("Practice created.");}catch(e){$("practice").textContent="Could not create practice: "+e.message;}finally{$("makePractice").disabled=false;}}
+$("makePractice").onclick=makePractice;
+$("checkPractice").onclick=()=>{$("score").textContent="For now, compare your answers with any MODEL ANSWER or ANSWER key shown in the practice set. Automatic scoring is not yet available for every practice format.";$("score").className="status";};
+$("ask").onclick=async()=>{const q=$("question").value.trim();if(!q){$("answer").textContent="Type a question first.";return;}$("ask").disabled=true;$("answer").textContent="Your teacher is preparing an answer…";try{const d=await callWorker({action:"answer",question:q,language:langName(),context:"Learner level: "+$("level").value+". Current skill: "+activeSkill+". Current topic: "+$("topic").value+". Answer in clear English first, then give a helpful explanation or translation in "+langName()+". Keep it practical and encouraging."});const a=d.answer||d.text||JSON.stringify(d);$("answer").textContent=a;}catch(e){$("answer").textContent="Could not get an answer: "+e.message;}finally{$("ask").disabled=false;}};
+$("speakAnswer").onclick=()=>speak($("answer").textContent,langName());
+$("language").onchange=()=>{if(currentLesson){setStatus("Language changed. Create the lesson again to generate new subtitles.");}};
+$("reset").onclick=()=>{if(confirm("Reset completed lessons saved on this device?")){completed.clear();localStorage.removeItem("epa_completed_v2");updateProgress();setStatus("Local progress reset.");}};
+function updateProgress(){$("completed").textContent=completed.size;}
+renderSkills();renderTopics();updateProgress();$("pathName").textContent=activeSkill;
+</script>
+</body>
+</html>

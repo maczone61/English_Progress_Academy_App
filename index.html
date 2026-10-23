@@ -9,7 +9,42 @@
 <section class="panel"><h2>Verb dictionary</h2><p>যেকোনো সময় একটি verb খুঁজতে নিচের বোতাম চাপুন। তারপর V1, V2 ও V3 দেখতে verb লিখুন।</p><button id="toggleVerbChart" type="button">📘 Open verb dictionary</button><p id="verbToggleStatus" class="small" aria-live="polite">The verb list is hidden until you open it.</p></section><section id="verbSection" class="panel hidden"><h2>Common English Verbs — V1, V2, V3</h2><p>Present Simple পাঠের পর এই চার্টটি মুখস্থ করুন। Tense অনুযায়ী বাক্য তৈরি করতে V1, V2 ও V3 জানা গুরুত্বপূর্ণ। প্রতিদিন অল্প অল্প করে শিখুন।</p><p><b>V1:</b> Base form · <b>V2:</b> Past form · <b>V3:</b> Past participle</p><label for="verbSearch">Find a verb</label><input id="verbSearch" placeholder="Search: go, write, play..."><h3>Regular verbs (<span id="regularCount"></span>)</h3><div class="tablewrap"><table><thead><tr><th>Base form (V1)</th><th>Past form (V2)</th><th>Past participle (V3)</th></tr></thead><tbody id="regularTable"></tbody></table></div><h3>Irregular verbs (<span id="irregularCount"></span>)</h3><div class="tablewrap"><table><thead><tr><th>Base form (V1)</th><th>Past form (V2)</th><th>Past participle (V3)</th></tr></thead><tbody id="irregularTable"></tbody></table></div><p id="verbCountNote" class="small"></p></section>
 <section class="panel"><h2>Translate Bengali into English</h2><p>প্রতিটি পাঠের ১০টি বাংলা বাক্য ইংরেজিতে অনুবাদ করুন। আগে নিজে চেষ্টা করুন, তারপর suggested answers দেখুন।</p><div id="translationQuestions"></div><button id="showTranslations">Show suggested answers</button><div id="translationAnswers" class="hidden"></div></section>
 <section class="panel"><h2>Practice exercises</h2><p>Each lesson contains 10 multiple-choice questions. Choose an answer, then check your score.</p><div id="exerciseQuestions"></div><button id="checkExercises">Check my answers</button><p id="exerciseResult" aria-live="polite"></p></section>
-<section class="panel"><h2>Ask the English teacher</h2><p>বর্তমান পাঠ অথবা ইংরেজি শেখার অন্য কোনো বিষয় সম্পর্কে প্রশ্ন করুন। বাংলায় লিখুন অথবা মাইক্রোফোনে বলুন।</p><label for="teacherQuestion">Write a question for the teacher</label><textarea id="teacherQuestion" rows="3" placeholder="উদাহরণ: He goes এবং He go-এর মধ্যে কোনটি সঠিক? কেন?"></textarea><div class="row"><button id="askTeacher" type="button">Ask and get answer</button></div><p class="small">To translate an ordinary Bengali sentence into English, use the separate translation tool below.</p><label for="sentenceToTranslate">Any Bengali sentence or paragraph</label><textarea id="sentenceToTranslate" rows="3" placeholder="এখানে যেকোনো বাংলা বাক্য লিখুন…"></textarea><button class="secondary" id="translateQuestion" type="button">Translate Bengali into English</button><div class="row"><button class="secondary" id="startMic">🎙 Ask by voice</button><button class="secondary" id="stopMic">Stop microphone</button></div><div id="questionTranslation" class="example hidden"></div><p class="small">You may mix Bengali or another native language with English terms such as subject, verb, tense, noun, or present simple. The teacher should preserve and explain those English terms.</p><p id="teacherStatus" class="small status" aria-live="polite">Voice questions require microphone permission and the deployed AI Worker.</p><div id="teacherAnswer" class="example hidden"></div><button id="hearAnswer" class="secondary hidden">🔊 Hear teacher's answer</button></section>
+
+<section class="panel"><h2>Ask the English teacher</h2>
+<p>বর্তমান পাঠ অথবা ইংরেজি শেখার অন্য কোনো বিষয় সম্পর্কে প্রশ্ন করুন। বাংলায় লিখুন অথবা মাইক্রোফোনে বলুন।</p>
+
+<h3>1. Ask a grammar question</h3>
+<label for="teacherQuestion">Write a question for the teacher</label>
+<textarea id="teacherQuestion" rows="3" placeholder="উদাহরণ: He goes এবং He go-এর মধ্যে কোনটি সঠিক? কেন?"></textarea>
+<div class="row">
+<button id="askTeacher" type="button">Ask and get answer</button>
+<button class="secondary" id="startMic" type="button">🎙 Ask by voice</button>
+</div>
+<div id="teacherAnswer" class="example hidden"></div>
+<div class="row">
+<button id="hearAnswer" class="secondary hidden" type="button">🔊 Hear teacher's answer</button>
+</div>
+
+<hr style="border-color:#344258;margin:20px 0">
+
+<h3>2. Speak Bengali and translate into English</h3>
+<p>বাংলায় একটি বাক্য বলুন। অ্যাপটি ইংরেজি অনুবাদ লিখবে এবং একই সঙ্গে ইংরেজিতে পড়ে শোনাবে।</p>
+<label for="sentenceToTranslate">Bengali sentence or paragraph</label>
+<textarea id="sentenceToTranslate" rows="3" placeholder="এখানে বাংলা বাক্য লিখুন অথবা মাইক্রোফোনে বলুন…"></textarea>
+<div class="row">
+<button id="startTranslateMic" type="button">🎙 Speak Bengali → English</button>
+<button id="translateQuestion" class="secondary" type="button">Translate typed text</button>
+</div>
+<div id="questionTranslation" class="example hidden"></div>
+<div class="row">
+<button id="hearTranslation" class="secondary hidden" type="button">🔊 Hear translation again</button>
+<button id="stopAudio" class="secondary" type="button">⏹ Stop audio</button>
+<button id="stopMic" class="secondary" type="button">⏹ Stop microphone</button>
+</div>
+
+<p id="teacherStatus" class="small status" aria-live="polite">Choose a microphone or type your text.</p>
+</section>
+
 <section class="panel"><h2>Before launching a paid app</h2><p>This is a working learning prototype, not yet a paid subscription service. Secure accounts, cloud-synced progress, payments, and professional curriculum review still need to be added and tested. Do not charge learners until those systems are ready.</p></section></main><footer>English Progress Academy · Learn one pattern at a time</footer>
 <script>
 const WORKER_URL="https://english-progress-academy-app.maczone61.workers.dev/";
@@ -31,7 +66,7 @@ const lessons=[
 let current=0;const $=id=>document.getElementById(id);let savedProgress=[];try{savedProgress=JSON.parse(localStorage.getItem("epa_completed")||"[]");if(!Array.isArray(savedProgress))savedProgress=[];}catch(e){savedProgress=[];}const completed=new Set(savedProgress);
 function saveProgress(){try{localStorage.setItem("epa_completed",JSON.stringify([...completed]));}catch(e){}$('progressText').textContent=`Completed lessons: ${completed.size} of ${lessons.length}`;$('progressBar').style.width=(completed.size/lessons.length*100)+'%';}
 function renderList(){$('lessonList').innerHTML='';lessons.forEach((l,i)=>{let b=document.createElement('button');b.className='navbutton'+(i===current?' active':'');b.textContent=(completed.has(i)?'✓ ':'')+l.title;b.onclick=()=>showLesson(i);$('lessonList').appendChild(b);});}
-function showLesson(i){current=Math.max(0,Math.min(i,lessons.length-1));let l=lessons[current];$('lessonTitle').textContent=l.title;$('lessonContent').innerHTML=`<p>${l.bn}</p><div class="example"><b>Pattern:</b> ${l.pattern}</div><h3>Examples</h3>`+l.examples.map(e=>`<div class="example"><b>${e[0]}</b><br>${e[1]}</div>`).join('');$('verbSection').classList.add('hidden');$('toggleVerbChart').textContent='📘 Open verb dictionary';$('verbToggleStatus').textContent='The verb list is hidden until you open it.';$('translationQuestions').innerHTML=l.tr.map((t,i)=>`<div class="question"><b>${i+1}. ${t[0]}</b><textarea rows="2" data-trans="${i}" placeholder="Write your English translation"></textarea></div>`).join('');$('translationAnswers').innerHTML=l.tr.map((t,i)=>`<p><b>${i+1}. ${t[0]}</b><br>Suggested answer: <b>${t[1]}</b></p>`).join('');$('translationAnswers').classList.add('hidden');$('exerciseQuestions').innerHTML=l.q.map((q,i)=>`<div class="question" data-q="${i}"><b>${i+1}. ${q[0]}</b>`+[q[1],q[2],q[3]].map((o,j)=>`<button class="option" data-choice="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')+`<div data-feedback></div></div>`).join('');$('exerciseQuestions').querySelectorAll('.option').forEach(b=>b.onclick=()=>{let p=b.closest('[data-q]');p.dataset.answer=b.dataset.choice;p.querySelectorAll('.option').forEach(x=>x.classList.remove('correct','wrong'));b.classList.add('correct');});$('exerciseResult').textContent='';renderList();$('lessonArea').scrollIntoView({behavior:'smooth',block:'start'});}
+function showLesson(i){current=Math.max(0,Math.min(i,lessons.length-1));let l=lessons[current];$('lessonTitle').textContent=l.title;$('lessonContent').innerHTML=`<p>${l.bn}</p><div class="example"><b>Pattern:</b> ${l.pattern}</div><h3>Examples</h3>`+l.examples.map(e=>`<div class="example"><b>${e[0]}</b><br>${e[1]}</div>`).join('');$('verbSection').classList.add('hidden');$('toggleVerbChart').textContent='📘 Open verb dictionary';$('verbToggleStatus').textContent='The verb list is hidden until you open it.';$('translationQuestions').innerHTML=l.tr.map((t,i)=>`<div class="question"><b>${i+1}. ${t[0]}</b><textarea rows="2" data-trans="${i}" placeholder="Write your English translation"></textare></div>`).join('');$('translationAnswers').innerHTML=l.tr.map((t,i)=>`<p><b>${i+1}. ${t[0]}</b><br>Suggested answer: <b>${t[1]}</b></p>`).join('');$('translationAnswers').classList.add('hidden');$('exerciseQuestions').innerHTML=l.q.map((q,i)=>`<div class="question" data-q="${i}"><b>${i+1}. ${q[0]}</b>`+[q[1],q[2],q[3]].map((o,j)=>`<button class="option" data-choice="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')+`<div data-feedback></div></div>`).join('');$('exerciseQuestions').querySelectorAll('.option').forEach(b=>b.onclick=()=>{let p=b.closest('[data-q]');p.dataset.answer=b.dataset.choice;p.querySelectorAll('.option').forEach(x=>x.classList.remove('correct','wrong'));b.classList.add('correct');});$('exerciseResult').textContent='';renderList();$('lessonArea').scrollIntoView({behavior:'smooth',block:'start'});}
 $('showTranslations').onclick=()=>$('translationAnswers').classList.toggle('hidden');$('checkExercises').onclick=()=>{let score=0;lessons[current].q.forEach((q,i)=>{let p=$('exerciseQuestions').querySelector(`[data-q="${i}"]`),a=p.dataset.answer===undefined?-1:Number(p.dataset.answer);p.querySelectorAll('.option').forEach((b,j)=>{b.classList.remove('correct','wrong');if(j===q[4])b.classList.add('correct');else if(j===a)b.classList.add('wrong');});if(a===q[4])score++;p.querySelector('[data-feedback]').textContent=a===q[4]?'Correct!':`Correct answer: ${q[q[4]+1]}`;});$('exerciseResult').textContent=`Your score: ${score} / 10`;};$('markComplete').onclick=()=>{completed.add(current);saveProgress();renderList();$('voiceStatus').textContent='Lesson marked complete on this device.';};$('nextLesson').onclick=()=>showLesson((current+1)%lessons.length);
 function speak(text,lang){if(!('speechSynthesis'in window)){$('voiceStatus').textContent='Speech synthesis is not supported in this browser. Try Chrome and check Android text-to-speech settings.';return;}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang=lang||'en-US';u.rate=.85;u.onstart=()=>$('voiceStatus').textContent='Speaking…';u.onend=()=>$('voiceStatus').textContent='Finished speaking.';u.onerror=e=>$('voiceStatus').textContent='Speech error: '+e.error+'. Check the device text-to-speech engine and installed voices.';let vs=speechSynthesis.getVoices(),prefix=u.lang.toLowerCase().split('-')[0];u.voice=vs.find(v=>v.lang.toLowerCase()===u.lang.toLowerCase())||vs.find(v=>v.lang.toLowerCase().startsWith(prefix))||null;speechSynthesis.speak(u);}
 $('hearLesson').onclick=()=>speak(lessons[current].examples.map(e=>e[0]).join('. '),'en-US');$('hearExplanation').onclick=()=>{let lang=$('language').value;if(lang==='bn-BD')speak(lessons[current].bn,'bn-BD');else speak('The lesson explanation is currently available in Bengali. Select Bengali for the accurate explanation.','en-US');};if('speechSynthesis'in window)speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
@@ -236,30 +271,209 @@ wear|wore|worn
 win|won|won
 write|wrote|written`.trim();
 function parseVerbs(s){return s.split('\n').map(x=>x.trim().split('|')).filter(x=>x.length===3)}function renderVerbs(){let s=$('verbSearch').value.toLowerCase().trim();let r=parseVerbs(regular),ir=parseVerbs(irregular);function draw(id,list){$(id).innerHTML=list.filter(v=>v.some(w=>w.toLowerCase().includes(s))).map(v=>'<tr>'+v.map(w=>'<td>'+w+'</td>').join('')+'</tr>').join('')}draw('regularTable',r);draw('irregularTable',ir);$('regularCount').textContent=r.length;$('irregularCount').textContent=ir.length;$('verbCountNote').textContent=`Chart contains ${r.length+ir.length} verbs in total. The two charts are kept separate as requested.`;}$('toggleVerbChart').onclick=()=>{const opening=$('verbSection').classList.contains('hidden');$('verbSection').classList.toggle('hidden',!opening);$('toggleVerbChart').textContent=opening?'📕 Close verb dictionary':'📘 Open verb dictionary';$('verbToggleStatus').textContent=opening?'Verb dictionary is open. Search for any verb below.':'Verb dictionary is hidden.';if(opening){$('verbSection').scrollIntoView({behavior:'smooth',block:'start'});$('verbSearch').focus();}};$('verbSearch').addEventListener('input',renderVerbs);renderVerbs();
+
 async function callTeacher(action, questionOverride){
- const question=(questionOverride!==undefined?questionOverride:$('teacherQuestion').value).trim();
- if(!question){$('teacherStatus').textContent='Please type or speak a question first.';return null;}
- if(WORKER_URL.includes('PASTE_YOUR')){$('teacherStatus').textContent='AI service is not connected yet. The lesson, translation-answer reveal, exercises, verb search and device voice buttons should still work. Deploy the matching Cloudflare Worker and put its URL in index.html to enable AI answers and Bengali-to-English translation.';return null;}
- const askButton=$('askTeacher'), translateButton=$('translateQuestion');
- askButton.disabled=true;translateButton.disabled=true;
- $('teacherStatus').textContent=action==='translate'?'Translating your Bengali text into English…':'The teacher is preparing an answer…';
- if(action==='answer'){$('teacherAnswer').classList.remove('hidden');$('teacherAnswer').textContent='Please wait…';$('hearAnswer').classList.add('hidden');}
+ const question=(questionOverride!==undefined?questionOverride:
+  action==='translate'?$('sentenceToTranslate').value:$('teacherQuestion').value).trim();
+
+ if(!question){
+  $('teacherStatus').textContent=action==='translate'
+   ?'Please enter or speak a Bengali sentence first.'
+   :'Please type or speak a question first.';
+  return null;
+ }
+
+ const askButton=$('askTeacher');
+ const translateButton=$('translateQuestion');
+ const translateMicButton=$('startTranslateMic');
+
+ askButton.disabled=true;
+ translateButton.disabled=true;
+ translateMicButton.disabled=true;
+
+ $('teacherStatus').textContent=action==='translate'
+  ?'Translating into English…'
+  :'The teacher is preparing an answer…';
+
+ if(action==='answer'){
+  $('teacherAnswer').classList.remove('hidden');
+  $('teacherAnswer').textContent='Please wait…';
+  $('hearAnswer').classList.add('hidden');
+ }
+
  try{
-  const res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,question,lesson:lessons[current].title,explanationLanguage:$('language').value,lessonExplanation:lessons[current].bn})});
-  const data=await res.json();if(!res.ok)throw Error(data.error||'Teacher service returned an error');
-  if(action==='translate'){$('questionTranslation').classList.remove('hidden');$('questionTranslation').innerHTML='<strong>English translation</strong><p></p>';$('questionTranslation').querySelector('p').textContent=data.translation||'No translation returned.';$('teacherStatus').textContent='Translation ready. Your Bengali text is unchanged.';return data.translation;}
-  $('teacherAnswer').textContent=data.answer||'No answer returned. Please try again.';$('hearAnswer').classList.remove('hidden');$('teacherStatus').textContent='Answer received. Your question remains written above.';return data.answer;
- }catch(e){if(action==='answer'){$('teacherAnswer').textContent='Could not contact the teacher. Check the Worker URL, deployment and internet connection. '+e.message;}else{$('questionTranslation').classList.remove('hidden');$('questionTranslation').textContent='Translation failed: '+e.message;}$('teacherStatus').textContent='Connection failed.';return null;}
- finally{askButton.disabled=false;translateButton.disabled=false;}
+  const res=await fetch(WORKER_URL,{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({
+    action,
+    question,
+    lesson:lessons[current].title,
+    explanationLanguage:$('language').value,
+    lessonExplanation:lessons[current].bn
+   })
+  });
+
+  const data=await res.json();
+  if(!res.ok)throw Error(data.error||'Teacher service returned an error');
+
+  if(action==='translate'){
+   const translation=(data.translation||'').trim();
+   $('questionTranslation').classList.remove('hidden');
+   $('questionTranslation').innerHTML='<strong>English translation</strong><p></p>';
+   $('questionTranslation').querySelector('p').textContent=
+    translation||'No translation returned.';
+
+   if(translation){
+    $('hearTranslation').classList.remove('hidden');
+    $('teacherStatus').textContent='Translation ready. Speaking the English translation…';
+    speak(translation,'en-US');
+   }else{
+    $('hearTranslation').classList.add('hidden');
+    $('teacherStatus').textContent='No translation was returned. Please try again.';
+   }
+   return translation;
+  }
+
+  $('teacherAnswer').textContent=data.answer||'No answer returned. Please try again.';
+  $('hearAnswer').classList.remove('hidden');
+  $('teacherStatus').textContent='Answer received.';
+  return data.answer;
+
+ }catch(e){
+  if(action==='answer'){
+   $('teacherAnswer').classList.remove('hidden');
+   $('teacherAnswer').textContent='Could not contact the teacher. Check your internet connection and Worker deployment. '+e.message;
+  }else{
+   $('questionTranslation').classList.remove('hidden');
+   $('questionTranslation').textContent='Translation failed: '+e.message;
+  }
+  $('teacherStatus').textContent='Connection failed. Please try again.';
+  return null;
+
+ }finally{
+  askButton.disabled=false;
+  translateButton.disabled=false;
+  translateMicButton.disabled=false;
+ }
 }
+
 $('askTeacher').onclick=()=>callTeacher('answer');
-$('translateQuestion').onclick=()=>{const text=$('sentenceToTranslate').value.trim();if(!text){$('teacherStatus').textContent='Please type a Bengali sentence or paragraph to translate.';return;}callTeacher('translate',text);};
-let recognition=null;const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(SR){recognition=new SR();recognition.lang='bn-BD';recognition.continuous=false;recognition.interimResults=false;recognition.onstart=()=>$('teacherStatus').textContent='Listening… Ask your question in Bengali or mix in English grammar terms.';recognition.onresult=e=>{const spoken=e.results[0][0].transcript;$('teacherQuestion').value=spoken;$('teacherStatus').textContent='Your spoken question has been written down. Preparing the answer…';callTeacher('answer',spoken);};recognition.onerror=e=>$('teacherStatus').textContent='Microphone error: '+e.error+'. Check microphone permission or type the question.';recognition.onend=()=>{if($('teacherStatus').textContent.startsWith('Listening'))$('teacherStatus').textContent='Microphone stopped.'};}
-else{$('startMic').disabled=true;$('teacherStatus').textContent='Voice recognition is not supported in this browser. Type your question instead.';}
-$('startMic').onclick=()=>{if(recognition){try{recognition.start()}catch(e){$('teacherStatus').textContent='Microphone may already be active. Wait and try again.'}}};
-$('stopMic').onclick=()=>{if(recognition)recognition.stop();$('teacherStatus').textContent='Microphone stopped.'};
-$('hearAnswer').onclick=()=>speak($('teacherAnswer').textContent,$('language').value==='bn-BD'?'bn-BD':$('language').value);
+
+$('translateQuestion').onclick=()=>{
+ const text=$('sentenceToTranslate').value.trim();
+ if(!text){
+  $('teacherStatus').textContent='Please type a Bengali sentence to translate.';
+  return;
+ }
+ callTeacher('translate',text);
+};
+
+$('hearAnswer').onclick=()=>{
+ speak($('teacherAnswer').textContent,
+  $('language').value==='bn-BD'?'bn-BD':$('language').value);
+};
+
+$('hearTranslation').onclick=()=>{
+ const p=$('questionTranslation').querySelector('p');
+ if(p&&p.textContent.trim())speak(p.textContent.trim(),'en-US');
+};
+
+$('stopAudio').onclick=()=>{
+ if('speechSynthesis' in window)speechSynthesis.cancel();
+ $('voiceStatus').textContent='Audio stopped.';
+ $('teacherStatus').textContent='Audio stopped.';
+};
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let questionRecognition=null;
+let translationRecognition=null;
+
+if(SR){
+ questionRecognition=new SR();
+ questionRecognition.lang='bn-BD';
+ questionRecognition.continuous=false;
+ questionRecognition.interimResults=false;
+
+ questionRecognition.onstart=()=>{
+  $('teacherStatus').textContent='Listening for your grammar question…';
+ };
+
+ questionRecognition.onresult=e=>{
+  const spoken=e.results[0][0].transcript.trim();
+  $('teacherQuestion').value=spoken;
+  $('teacherStatus').textContent='Question recognized. Preparing the answer…';
+  callTeacher('answer',spoken);
+ };
+
+ questionRecognition.onerror=e=>{
+  $('teacherStatus').textContent='Question microphone error: '+e.error+'. You can type your question instead.';
+ };
+
+ questionRecognition.onend=()=>{
+  if($('teacherStatus').textContent.startsWith('Listening for your grammar question'))
+   $('teacherStatus').textContent='Question microphone stopped.';
+ };
+
+ translationRecognition=new SR();
+ translationRecognition.lang='bn-BD';
+ translationRecognition.continuous=false;
+ translationRecognition.interimResults=false;
+
+ translationRecognition.onstart=()=>{
+  $('teacherStatus').textContent='Listening for your Bengali sentence…';
+ };
+
+ translationRecognition.onresult=e=>{
+  const spoken=e.results[0][0].transcript.trim();
+  $('sentenceToTranslate').value=spoken;
+  $('teacherStatus').textContent='Bengali sentence recognized. Translating…';
+  callTeacher('translate',spoken);
+ };
+
+ translationRecognition.onerror=e=>{
+  $('teacherStatus').textContent='Translation microphone error: '+e.error+'. You can type your sentence instead.';
+ };
+
+ translationRecognition.onend=()=>{
+  if($('teacherStatus').textContent.startsWith('Listening for your Bengali sentence'))
+   $('teacherStatus').textContent='Translation microphone stopped.';
+ };
+
+ $('startMic').onclick=()=>{
+  try{
+   translationRecognition.stop();
+  }catch(e){}
+  try{
+   questionRecognition.start();
+  }catch(e){
+   $('teacherStatus').textContent='Microphone may already be active. Stop it and try again.';
+  }
+ };
+
+ $('startTranslateMic').onclick=()=>{
+  try{
+   questionRecognition.stop();
+  }catch(e){}
+  try{
+   translationRecognition.start();
+  }catch(e){
+   $('teacherStatus').textContent='Microphone may already be active. Stop it and try again.';
+  }
+ };
+
+ $('stopMic').onclick=()=>{
+  try{questionRecognition.stop();}catch(e){}
+  try{translationRecognition.stop();}catch(e){}
+  $('teacherStatus').textContent='Microphone stopped.';
+ };
+
+}else{
+ $('startMic').disabled=true;
+ $('startTranslateMic').disabled=true;
+ $('teacherStatus').textContent='Voice recognition is not supported in this browser. You can still type questions and Bengali sentences.';
+}
+
 saveProgress();renderList();showLesson(0);
 window.addEventListener('error',e=>{const status=document.getElementById('teacherStatus');if(status)status.textContent='App script error: '+(e.message||'Unknown error')+'. Please send this message for troubleshooting.';});
 </script></body></html>
